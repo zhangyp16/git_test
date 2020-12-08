@@ -1,8 +1,6 @@
 package tree;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeDemo {
 
@@ -103,5 +101,37 @@ public class TreeDemo {
             val = _val;
             children = _children;
         }
+    }
+
+    static class Employee {
+        public int id;
+        public int importance;
+        public List<Integer> subordinates;
+    }
+
+    // 690 员工的重要性
+    public int getImportance(List<Employee> employees, int id) {
+        int count = 0;
+        Map<Integer, Employee> map = new HashMap<>();
+        for (Employee employee : employees){
+            map.put(employee.id, employee);
+        }
+
+        Queue<Employee> queue = new LinkedList<>();
+        queue.add(map.get(id));
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size > 0){
+                Employee employee = queue.poll();
+                if (null != employee){
+                    count += employee.importance;
+                    for (int i = 0; i < employee.subordinates.size(); i++){
+                        queue.add(map.get(employee.subordinates.get(i)));
+                    }
+                }
+                size--;
+            }
+        }
+        return count;
     }
 }
