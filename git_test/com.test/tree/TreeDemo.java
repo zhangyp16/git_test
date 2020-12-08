@@ -22,7 +22,7 @@ public class TreeDemo {
     }
 
     //层序遍历解法
-    public int maxDepth(Node root) {  
+    public int maxDepth(Node root) {
         if(root == null)
             return 0;
         if(root.children.size() == 0)
