@@ -58,8 +58,8 @@ public class TreeDemo {
             return;
         }
         vals.add(root.val);
-        inorder(root.left, vals);
-        inorder(root.right, vals);
+        preorder(root.left, vals);
+        preorder(root.right, vals);
     }
 
     // 后序遍历
@@ -67,40 +67,9 @@ public class TreeDemo {
         if (null == root){
             return;
         }
-        inorder(root.left, vals);
-        inorder(root.right, vals);
+        lastorder(root.left, vals);
+        lastorder(root.right, vals);
         vals.add(root.val);
-    }
-
-
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    static class Node {
-        public int val;
-        public List<Node> children;
-
-        public Node() {}
-
-        public Node(int _val) {
-            val = _val;
-        }
-
-        public Node(int _val, List<Node> _children) {
-            val = _val;
-            children = _children;
-        }
     }
 
     static class Employee {
@@ -133,5 +102,48 @@ public class TreeDemo {
             }
         }
         return count;
+    }
+
+    // 993. 二叉树的堂兄弟节点
+    public boolean isCousins(TreeNode root, int x, int y) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size > 0){
+                TreeNode node = queue.poll();
+
+                size--;
+            }
+        }
+        return false;
+    }
+
+    // 563. 二叉树的坡度
+    public int findTilt(TreeNode root) {
+        List<Integer> vals = new ArrayList<>();
+        countNodeTilt(root, vals);
+
+        int count = 0;
+        for (Integer t : vals){
+            count += t;
+        }
+        return count;
+    }
+
+    public void countNodeTilt(TreeNode node, List<Integer> vals) {
+        if (null == node){
+            return;
+        }
+        vals.add(Math.abs(sumNode(node.left) - sumNode(node.right)));
+        countNodeTilt(node.left, vals);
+        countNodeTilt(node.right, vals);
+    }
+
+    public int sumNode(TreeNode node) {
+        if (null == node){
+            return 0;
+        }
+        return node.val + sumNode(node.left) + sumNode(node.right);
     }
 }
