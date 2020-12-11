@@ -5,7 +5,12 @@ import java.util.*;
 public class TreeDemo {
 
     public static void main(String[] args) {
-
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(6);
+        sortedArrayToBST(new int[]{-10,-3,0,5,9});
     }
 
     //DFS递归写法
@@ -145,5 +150,61 @@ public class TreeDemo {
             return 0;
         }
         return node.val + sumNode(node.left) + sumNode(node.right);
+    }
+
+    public boolean isBalanced(TreeNode root) {
+        if (null == root || Math.abs(high(root.left) - high(root.right)) > 1){
+            return false;
+        }
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    private int high(TreeNode node){
+        if(null == node){
+            return 0;
+        }
+        return Math.max(high(node.left), high(node.right)) + 1;
+    }
+
+    public static List<String> binaryTreePaths(TreeNode root) {
+        List<String> vals = new ArrayList<>();
+        if (null == root){
+            return vals;
+        }
+        if (null == root.left && null == root.right){
+            vals.add(root.val + "");
+            return vals;
+        }
+
+        if (null != root.left){
+            List<String> leftStr = binaryTreePaths(root.left);
+            for (String left : leftStr) {
+                vals.add(root.val + "->" + left);
+            }
+        }
+        if (null != root.right){
+            List<String> rightStr = binaryTreePaths(root.right);
+            for (String right : rightStr) {
+                vals.add(root.val + "->" + right);
+            }
+        }
+        return vals;
+    }
+
+
+    public static TreeNode sortedArrayToBST(int[] nums) {
+        return buildTreeNode(nums, 0, nums.length);
+    }
+
+    private static TreeNode buildTreeNode(int[] nums, int start, int end){
+        int mid = (start + end) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        if(mid <= 0 || mid >= end){
+            return node;
+        }
+
+        node.left = buildTreeNode(nums, start, mid);
+        node.right = buildTreeNode(nums, mid, end);
+        return node;
     }
 }
