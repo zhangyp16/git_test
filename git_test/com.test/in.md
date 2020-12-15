@@ -1,6 +1,11 @@
-ThreadLocal的应用、内部实现、线程污染、对应key为何是虚拟引用、
+ThreadLocal的应用、
+内部实现、
+线程污染、
+对应key为何是虚拟引用、
 
-什么时候会引起内存泄漏，对象头所占用的字节数、压缩指针（没答上）、
+什么时候会引起内存泄漏，
+对象头所占用的字节数、压缩指针（没答上）、
+
 volatile关键字原理、指令重排序引发的DCL问题，
 
 ## java内存结构
@@ -86,10 +91,30 @@ volatile关键字原理、指令重排序引发的DCL问题，
     可重复读
     串行
 
-### MVCC结构
+### MVCC结构 (多版本并发控制)  
+  [https://blog.csdn.net/Waves___/article/details/105295060#1.2%E3%80%81Read%20View%20%E7%BB%93%E6%9E%84]
 
-聚簇索引和非聚簇索引的区别、sql优化、
+聚簇索引
+非聚簇索引的区别
 
-springboot自定义插件、springboot启动过程（没答上）、
+sql优化
 
-redis数据结构、跳跃表数据结构、分布式锁优化、钩子进程等
+springboot自定义插件
+springboot启动过程
+
+## redis
+redis数据结构
+
+    String
+    List --> Queue
+    Set
+    Zset
+    Hash
+    
+跳跃表数据结构
+
+    skipList
+    
+分布式锁优化
+
+钩子进程等
