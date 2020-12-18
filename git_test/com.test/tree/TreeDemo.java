@@ -207,4 +207,29 @@ public class TreeDemo {
         node.right = buildTreeNode(nums, mid, end);
         return node;
     }
+
+
+    // 3、NC15 求二叉树的层序遍历
+    public static ArrayList<ArrayList<Integer>> levelOrder (TreeNode root) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            int count = queue.size();
+            ArrayList<Integer> vals = new ArrayList<>();
+            while (count > 0){
+                TreeNode node = queue.poll();
+                vals.add(node.val);
+                if (null != node.left){
+                    queue.add(node.left);
+                }
+                if (null != node.right){
+                    queue.add(node.right);
+                }
+                count--;
+            }
+            ret.add(vals);
+        }
+        return ret;
+    }
 }
