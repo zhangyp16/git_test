@@ -10,11 +10,11 @@ import java.util.Queue;
 public class NiuKeDemo {
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-
-        ReverseList(head);
+        Xqueue xqueue = new Xqueue();
+        xqueue.push(1);
+        xqueue.push(2);
+        xqueue.push(3);
+        System.out.println(xqueue.pop());
     }
 
 
