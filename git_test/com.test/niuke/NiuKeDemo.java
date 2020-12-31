@@ -45,14 +45,6 @@ public class NiuKeDemo {
         return pre;
     }
 
-    public static class ListNode {
-        int val;
-        ListNode next = null;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-    }
 
     // NC4 判断链表中是否有环
     public boolean hasCycle(ListNode head) {

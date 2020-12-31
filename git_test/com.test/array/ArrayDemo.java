@@ -29,7 +29,8 @@ public class ArrayDemo {
     // 495
     public static int findPoisonedDuration(int[] timeSeries, int duration) {
         int length = timeSeries.length;
-        int max = Math.multiplyExact(length, duration);
+
+
         return 0;
     }
     // 414、628
