@@ -33,4 +33,10 @@ public class ArrayDemo {
         return 0;
     }
     // 414、628
+
+
+    // 给定一个整数数组，找出总和最大的连续数列，并返回总和
+    public int maxSubArray(int[] nums) {
+        return 0;
+    }
 }

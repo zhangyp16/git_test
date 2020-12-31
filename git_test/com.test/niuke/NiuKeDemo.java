@@ -5,7 +5,8 @@ import java.util.*;
 public class NiuKeDemo {
 
     public static void main(String[] args) {
-        reConstructBinaryTree(new int[]{1,2,3,4,5,6,7},new int[]{3,2,4,1,6,5,7});
+        // reConstructBinaryTree(new int[]{1,2,3,4,5,6,7},new int[]{3,2,4,1,6,5,7});
+        Fibonacci(4);
     }
 
 
@@ -150,4 +151,54 @@ public class NiuKeDemo {
         return root;
     }
 
+    public static int Fibonacci(int n) {
+        if (n == 0){
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        int pre = 0, cur = 1;
+        for (int i = 2; i <= n; i++){
+            int tmp = cur;
+            cur = pre + cur;
+            pre = tmp;
+        }
+        return cur;
+    }
+
+    /*public ListNode mergeTwoLists (ListNode l1, ListNode l2) {
+        // write code here
+        List<Integer> list = new ArrayList<>();
+        while (null != l1){
+            list.add(l1.val);
+            l1 = l1.next;
+        }
+        while (null != l2){
+            list.add(l2.val);
+            l2 = l2.next;
+        }
+        Collections.sort(list);
+        ListNode
+        return ret;
+    }*/
+
+
+
+    /**
+     * NC 21 链表内指定区间反转  时间复杂度 ，空间复杂度
+     * @param head ListNode类
+     * @param m int整型  1≤m≤n≤链表长度
+     * @param n int整型
+     * @return ListNode类
+     */
+    public ListNode reverseBetween (ListNode head, int m, int n) {
+        // write code here
+        int idx = 0;
+        while (idx < n){
+
+            idx++;
+        }
+        return head;
+    }
 }
