@@ -1,19 +1,15 @@
 package niuke;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class XiaoHongShu {
 
     public static void main(String[] args) {
 
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(3);
-        root.right = new TreeNode(3);
-        root.right.left = new TreeNode(2);
-
-        System.out.println(isSymmetric(root));
+        System.out.println(solve(23, 12));
     }
 
     // NC16
@@ -59,6 +55,44 @@ public class XiaoHongShu {
         return x.val == y.val
                 && checkSymmetric(x.left, y.right)
                 && checkSymmetric(x.right, y.left);
+    }
+
+
+    /**
+     * 进制转换
+     * @param M int整型 给定整数
+     * @param N int整型 转换到的进制
+     * @return string字符串
+     */
+    public static String solve (int M, int N) {
+        List<Integer> vals = new ArrayList<>();
+        int next = Math.abs(M);
+        while (next > 0){
+            vals.add(0, next % N);
+            next = next / N;
+        }
+        StringBuilder sb = new StringBuilder();
+        if (M < 0){
+            sb.append("-");
+        }
+        for (Integer val : vals) {
+            if (val == 15) {
+                sb.append("F");
+            } else if (val == 14) {
+                sb.append("E");
+            } else if (val == 13) {
+                sb.append("D");
+            } else if (val == 12) {
+                sb.append("C");
+            } else if (val == 11) {
+                sb.append("B");
+            } else if (val == 10) {
+                sb.append("A");
+            } else {
+                sb.append(val);
+            }
+        }
+        return sb.toString();
     }
 
 }
