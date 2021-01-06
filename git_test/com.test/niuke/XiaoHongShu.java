@@ -95,4 +95,28 @@ public class XiaoHongShu {
         return sb.toString();
     }
 
+
+    // NC 33 合并两个有序链表
+    public ListNode mergeTwoLists (ListNode l1, ListNode l2) {
+        // write code here
+        if (null == l1 && null == l2){
+            return null;
+        }
+        if (null == l1){
+            return l2;
+        }
+        if (null == l2){
+            return l1;
+        }
+
+        ListNode node;
+        if (l1.val > l2.val){
+            node = l2;
+            node.next = mergeTwoLists(l1, l2.next);
+        } else {
+            node = l1;
+            node.next = mergeTwoLists(l1.next, l2);
+        }
+        return node;
+    }
 }
