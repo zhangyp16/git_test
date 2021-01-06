@@ -40,4 +40,9 @@ public class ArrayDemo {
     public int maxSubArray(int[] nums) {
         return 0;
     }
+
+    // 556 下一个更大元素 III
+    public int nextGreaterElement(int n) {
+        return -1;
+    }
 }
