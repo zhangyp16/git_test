@@ -119,4 +119,29 @@ public class XiaoHongShu {
         }
         return node;
     }
+
+    // NC 66 两个链表的第一个公共节点
+    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+        if (null == pHead1 || null == pHead2){
+            return null;
+        }
+        if (isCommonNode(pHead1, pHead2)){
+            return pHead1;
+        }
+        ListNode node;
+        node = FindFirstCommonNode(pHead1, pHead2.next);
+        if (null != node){
+            return node;
+        }
+        node = FindFirstCommonNode(pHead1.next, pHead2);
+        if (null != node){
+            return node;
+        }
+        node = FindFirstCommonNode(pHead1.next, pHead2.next);
+        return node;
+    }
+
+    private boolean isCommonNode(ListNode pHead1, ListNode pHead2) {
+        return pHead1.val == pHead2.val && isCommonNode(pHead1.next, pHead2.next);
+    }
 }
