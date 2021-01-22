@@ -1,9 +1,6 @@
 package niuke;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class NC_3 {
 
@@ -18,7 +15,9 @@ public class NC_3 {
         next.next.next.next = next;
         head.next = next;
 
-        System.out.println(detectCycle2(head));
+        // System.out.println(detectCycle2(head));
+
+        System.out.println(solve("syewwtsgprrkebafptmvicizqrsszltspftnbtkeairfpuumqzruiacrjvvvppcffjktpuctaifytzcityczvuhnekfuxfhxflldchzgzaneldaehovlwftesmthzdbsdzopkexmmfidcckjfpvuaagpeeyoeqwdzzomfumnfzmebooaaofhwvnmzikmrnhvvcoxukfdmbntszwvevzntzhmvntcrnsublqfrueygjzdeytkftppibxyhbqgwmlcpvqrm"));
     }
 
     // 对于一个给定的链表，返回环的入口节点，如果没有环，返回null
@@ -81,5 +80,25 @@ public class NC_3 {
             fast = fast.next.next;
         }
         return false;
+    }
+
+    // NC 103 反转字符串
+    public static String solve (String str) {
+        // write code here
+        char[] strArr = str.toCharArray();
+        int start = 0, end = str.length() - 1;
+        while (start < end){
+            char tmp = strArr[start];
+            strArr[start] = strArr[end];
+            strArr[end] = tmp;
+            start++;
+            end--;
+        }
+        return String.valueOf(strArr);
+        /*StringBuilder sb = new StringBuilder();
+        for (char s : strArr){
+            sb.append(s);
+        }
+        return sb.toString();*/
     }
 }

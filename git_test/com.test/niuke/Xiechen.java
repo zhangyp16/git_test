@@ -1,5 +1,9 @@
 package niuke;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Xiechen {
 
     public static void main(String[] args) {
@@ -104,5 +108,20 @@ public class Xiechen {
         }
         slow.next = slow.next.next;
         return first.next;
+    }
+
+
+    public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+        int a = 0, b = 0, c = 0;
+        return null;
+    }
+
+    public ArrayList<ArrayList<Integer>> threeSum2(int[] num) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < num.length; i++){
+            map.put(num[i], i);
+        }
+        int a = 0, b = 0, c = 0;
+        return null;
     }
 }
