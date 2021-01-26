@@ -141,4 +141,21 @@ public class Zijie {
         return max;
     }
 
+    /**
+     *
+     * @param root TreeNode类
+     * @param sum int整型
+     * @return bool布尔型
+     */
+    public boolean hasPathSum (TreeNode root, int sum) {
+        if (null == root){
+            return false;
+        }
+        if (null == root.left && null == root.right && root.val == sum){
+            return true;
+        }
+        return hasPathSum(root.left, sum - root.val)
+                || hasPathSum(root.right, sum - root.val);
+    }
+
 }

@@ -232,4 +232,18 @@ public class TreeDemo {
         }
         return ret;
     }
+
+    // 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        return root;
+    }
+
+    private void lastOrder(TreeNode node, TreeNode p, TreeNode q){
+
+    }
+
+    private boolean hasNode(TreeNode node, TreeNode p){
+        return node.val == p.val || hasNode(node.left, p) || hasNode(node.right, p);
+    }
 }
