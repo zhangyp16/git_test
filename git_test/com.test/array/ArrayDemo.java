@@ -118,4 +118,45 @@ public class ArrayDemo {
         }
     }
 
+    // 面试题 16.19. 水域大小
+    public int[] pondSizes(int[][] land) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < land.length; i++){
+            for (int j = 0; j < land[i].length; j++){
+                if (land[i][j] == 0){
+                    list.add(pondSizes(land, i, j));
+                }
+            }
+        }
+        int[] ret = new int[list.size()];
+        for (int i = 0; i < list.size(); i++){
+            ret[i] = list.get(i);
+        }
+        Arrays.sort(ret);
+        return ret;
+    }
+
+    private int pondSizes(int[][] land, int i, int j){
+        if (i >= land.length || i < 0 || j < 0 || j > land[i].length){
+            return 0;
+        }
+        if (land[i][j] != 0){
+            return 0;
+        }
+        land[i][j] = -1;
+        int ret = 1;
+        ret += pondSizes(land, i, j - 1);
+        ret += pondSizes(land, i, j + 1);
+        ret += pondSizes(land, i + 1, j - 1);
+        ret += pondSizes(land, i + 1, j);
+        ret += pondSizes(land, i + 1, j + 1);
+
+        ret += pondSizes(land, i - 1, j + 1);
+        ret += pondSizes(land, i - 1, j - 1);
+        ret += pondSizes(land, i - 1, j);
+
+
+        return ret;
+    }
+
 }

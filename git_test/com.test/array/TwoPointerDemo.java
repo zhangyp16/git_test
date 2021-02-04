@@ -10,7 +10,9 @@ public class TwoPointerDemo {
 
         // merge(new int[]{4,5,6,0,0,0}, 3, new int[]{1,2,3}, 3);
 
-        System.out.println(removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4}));
+        // System.out.println(removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4}));
+
+        System.out.println(findMaxAverage(new int[]{0,4,0,3,2}, 1));
     }
 
     public static boolean isPalindrome(String s) {
@@ -95,5 +97,24 @@ public class TwoPointerDemo {
     // leet-code 350 两个数组的交集
     public int[] intersect(int[] nums1, int[] nums2) {
         return new int[0];
+    }
+
+    // 480. 滑动窗口中位数
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        return new double[0];
+    }
+
+    // 643. 子数组最大平均数 I
+    public static double findMaxAverage(int[] nums, int k) {
+        double max = 0;
+        for (int i = 0; i < k; i++){
+            max += nums[i];
+        }
+        double range = max;
+        for (int i = k; i < nums.length; i++){
+            range = range + nums[i] - nums[i - k];
+            max = Math.max(max, range);
+        }
+        return max / k;
     }
 }
