@@ -7,13 +7,12 @@ public class ArrayDemo {
 
     public static void main(String[] args) {
 
-        Map<String, String> map = new HashMap<>();
-        System.out.println(map.put("haha", "lala"));
-        System.out.println(map.put("haha", "kaka"));
-        System.out.println(map.get("haha"));
         // System.out.println(findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1,0,1}));
 
         // System.out.println(maxSlidingWindow2(new int[]{1,3,-1,-3,5,3,6,7}, 3));
+
+         // System.out.println(solve(new char[][]{{1,1,0,0,0},{0,1,0,1,1},{0,0,0,1,1},{0,0,0,0,0},{0,0,1,1,1}}));
+        System.out.println(solve(new char[][]{{1}}));
     }
 
 
@@ -157,6 +156,41 @@ public class ArrayDemo {
 
 
         return ret;
+    }
+
+
+    /**
+     * NC 109 判断岛屿数量
+     * @param grid char字符型二维数组
+     * @return int整型
+     */
+    public static int solve (char[][] grid) {
+        // write code here
+        int ret = 0;
+        for (int i = 0; i < grid.length; i++){
+            for (int j = 0; j < grid[i].length; j++){
+                if (grid[i][j] == '1'){
+                    ret++;
+                    solve(grid, i, j);
+                }
+            }
+        }
+        return ret;
+    }
+
+    public static void solve (char[][] grid, int i, int j) {
+        if (i < 0 || j < 0
+                || i >= grid.length
+                || j >= grid[i].length
+                || grid[i][j] != '1'){
+            return;
+        }
+        grid[i][j] = '0';
+        solve(grid, i - 1, j);
+        solve(grid, i + 1, j);
+        solve(grid, i, j - 1);
+        solve(grid, i, j + 1);
+        // write code here
     }
 
 }
