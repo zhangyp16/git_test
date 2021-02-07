@@ -8,6 +8,10 @@ public class TreeDemo {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
+
+        System.out.println(sumNumbers(root));
+
+
         root.left.left = new TreeNode(5);
         root.left.right = new TreeNode(6);
         sortedArrayToBST(new int[]{-10,-3,0,5,9});
@@ -245,5 +249,75 @@ public class TreeDemo {
 
     private boolean hasNode(TreeNode node, TreeNode p){
         return node.val == p.val || hasNode(node.left, p) || hasNode(node.right, p);
+    }
+
+
+    // 二叉树的之字形层序遍历
+    // TODO: 2021/2/7
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder (TreeNode root) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        deque.addFirst(root);
+        while (!deque.isEmpty()){
+            int count = deque.size();
+            while (count > 0){
+                
+            }
+        }
+        return ret;
+    }
+
+    // leet-code 129. 求根到叶子节点数字之和
+    public static int sumNumbers(TreeNode root) {
+        if (null == root){
+            return 0;
+        }
+        List<Integer> vals = new ArrayList<>();
+        sumNumbers(root, 0, vals);
+        int ret = 0;
+        for (Integer val : vals){
+            ret += val;
+        }
+        return ret;
+    }
+
+    public static void sumNumbers(TreeNode node, int val, List<Integer> vals) {
+        if (null == node){
+            return;
+        }
+        if (null == node.left && null == node.right){
+            vals.add(Integer.parseInt(String.valueOf(val) + node.val));
+            return;
+        }
+
+        if (null != node.left){
+            sumNumbers(node.left, Integer.parseInt(String.valueOf(val) + node.val), vals);
+        }
+        if (null != node.right){
+            sumNumbers(node.right, Integer.parseInt(String.valueOf(val) + node.val), vals);
+        }
+    }
+
+    // 113. 路径总和 II
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> ret = new ArrayList<>();
+        dfs(root, ret, new ArrayList<>(), targetSum);
+        return ret;
+    }
+
+    private void dfs(TreeNode node, List<List<Integer>> ret, List<Integer> list, int val){
+        if (null == node){
+            return;
+        }
+
+        list.add(node.val);
+        if (null == node.left
+                && null == node.right
+                && (val - node.val) == 0){
+            ret.add(list);
+            return;
+        }
+        dfs(node.left, ret, new ArrayList<>(list), val - node.val);
+        dfs(node.right, ret, new ArrayList<>(list), val - node.val);
     }
 }
