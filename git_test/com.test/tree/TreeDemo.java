@@ -5,16 +5,14 @@ import java.util.*;
 public class TreeDemo {
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-
-        System.out.println(sumNumbers(root));
-
-
-        root.left.left = new TreeNode(5);
-        root.left.right = new TreeNode(6);
-        sortedArrayToBST(new int[]{-10,-3,0,5,9});
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(2);
+        root.next.next = new ListNode(6);
+        root.next.next.next = new ListNode(3);
+        root.next.next.next.next = new ListNode(4);
+        root.next.next.next.next.next = new ListNode(5);
+        root.next.next.next.next.next.next = new ListNode(6);
+        System.out.println(reverseList(root));
     }
 
     //DFS递归写法
@@ -319,5 +317,34 @@ public class TreeDemo {
         }
         dfs(node.left, ret, new ArrayList<>(list), val - node.val);
         dfs(node.right, ret, new ArrayList<>(list), val - node.val);
+    }
+
+    // 删除链表中等于给定值 val 的所有节点
+    public static ListNode removeElements(ListNode head, int val) {
+        if(null == head){
+            return null;
+        }
+        if (head.val == val){
+            head = removeElements(head.next, val);
+        } else {
+            head.next = removeElements(head.next, val);
+        }
+        return head;
+    }
+
+    // 反转链表
+    public static ListNode reverseList(ListNode head) {
+        if (null == head){
+            return null;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+        while (null != cur){
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
     }
 }
