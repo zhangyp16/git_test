@@ -347,4 +347,43 @@ public class TreeDemo {
         }
         return pre;
     }
+    // 反向打印
+    public int[] reversePrint(ListNode head) {
+        Deque<Integer> queue = new LinkedList<>();
+        ListNode cur = head;
+        while (cur != null){
+            queue.addFirst(cur.val);
+            cur = cur.next;
+        }
+        int[] ret = new int[queue.size()];
+        int i = 0;
+        while (!queue.isEmpty()){
+            ret[i] = queue.pollFirst();
+            i++;
+        }
+        return ret;
+    }
+
+    // 160 相交链表
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode ret = null;
+        Stack<ListNode> stackA = new Stack<>();
+        while (headA != null){
+            stackA.push(headA);
+            headA = headA.next;
+        }
+        Stack<ListNode> stackB = new Stack<>();
+        while (headB != null){
+            stackB.push(headB);
+            headB = headB.next;
+        }
+        while (!stackA.empty() && !stackB.empty()){
+            ListNode node = stackA.pop();
+            if (node != stackB.pop()){
+                break;
+            }
+            ret = node;
+        }
+        return ret;
+    }
 }
