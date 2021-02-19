@@ -72,7 +72,7 @@ public class ListNodeDemo {
         return ret;
     }
     // 82. 删除排序链表中的重复元素 II 
-    // TODO: 2021/2/18 想不到解法 
+    // TODO: 2021/2/18 想不到解法
     // 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字
     public ListNode deleteDuplicates82(ListNode head) {
         if (null == head){

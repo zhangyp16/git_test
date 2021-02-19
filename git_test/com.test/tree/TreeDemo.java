@@ -386,4 +386,20 @@ public class TreeDemo {
         }
         return ret;
     }
+
+
+    // 538. 把二叉搜索树转换为累加树 todo 还不会
+    public TreeNode convertBST(TreeNode root) {
+        sumNode2(root);
+        return root;
+    }
+
+    private void sumNode2(TreeNode node){
+        if (null == node){
+            return;
+        }
+        sumNode2(node.right);
+        sumNode2(node.left);
+
+    }
 }
