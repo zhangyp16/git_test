@@ -12,7 +12,9 @@ public class ArrayDemo {
         // System.out.println(maxSlidingWindow2(new int[]{1,3,-1,-3,5,3,6,7}, 3));
 
          // System.out.println(solve(new char[][]{{1,1,0,0,0},{0,1,0,1,1},{0,0,0,1,1},{0,0,0,0,0},{0,0,1,1,1}}));
-        System.out.println(solve(new char[][]{{1}}));
+        // System.out.println(solve(new char[][]{{1}}));
+
+        findShortestSubArray(new int[]{1,2,2,3,1,4,2});
     }
 
 
@@ -191,6 +193,53 @@ public class ArrayDemo {
         solve(grid, i, j - 1);
         solve(grid, i, j + 1);
         // write code here
+    }
+
+    // 数组的度 & 最短子数组
+    public static int findShortestSubArray(int[] nums) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++){
+            if (map.get(nums[i]) == null){
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                map.put(nums[i], list);
+            } else {
+                map.get(nums[i]).add(i);
+            }
+        }
+        int[] max = new int[2];
+        max[1] = Integer.MAX_VALUE;
+        for (int key : map.keySet()){
+            List<Integer> list = map.get(key);
+            int d = list.get(list.size() - 1) - list.get(0);
+            if (list.size() > max[0]){
+                max[0] = list.size();
+                max[1] = d;
+            } else if (list.size() == max[0] && d <= max[1]){
+                max[1] = d;
+            }
+        }
+        return max[1] + 1;
+    }
+
+    // 栈的压入、弹出序列
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        Stack<Integer> stack = new Stack<>();
+        int i = 0;
+        for(int num : pushed) {
+            stack.push(num); // num 入栈
+            while(!stack.isEmpty() && stack.peek() == popped[i]) { // 循环判断与出栈
+                stack.pop();
+                i++;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    // 46 全排列
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ret = new ArrayList<>();
+        return ret;
     }
 
 }

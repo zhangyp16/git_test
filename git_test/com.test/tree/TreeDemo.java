@@ -12,7 +12,10 @@ public class TreeDemo {
         root.next.next.next.next = new ListNode(4);
         root.next.next.next.next.next = new ListNode(5);
         root.next.next.next.next.next.next = new ListNode(6);
-        System.out.println(reverseList(root));
+        // System.out.println(reverseList(root));
+
+
+        buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
     }
 
     //DFS递归写法
@@ -402,4 +405,74 @@ public class TreeDemo {
         sumNode2(node.left);
 
     }
+
+    // 二叉树最大路径和
+    public int maxPathSum (TreeNode root) {
+        if (root == null){
+            return 0;
+        }
+        if (root.left == null && root.right == null){
+            return root.val;
+        }
+        int count = root.val;
+        // Math.max(count, count + )
+        // write code here
+        return 0;
+    }
+
+
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        List<List<Integer>> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            int count = queue.size();
+            List<Integer> vals = new ArrayList<>();
+            while (count > 0){
+                TreeNode node = queue.poll();
+                vals.add(node.val);
+                if (null != node.left){
+                    queue.add(node.left);
+                }
+                if (null != node.right){
+                    queue.add(node.right);
+                }
+                count--;
+            }
+            ret.add(vals);
+        }
+        return ret;
+    }
+    // 105. 从前序与中序遍历序列构造二叉树
+    // 前序遍历 preorder = [3,9,20,15,7]
+    // 中序遍历 inorder = [9,3,15,20,7]
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
+        Map<Integer, Integer> pre_map = new HashMap<>();
+        for (int i = 0; i < preorder.length; i++){
+            pre_map.put(preorder[i], i);
+        }
+        Map<Integer, Integer> in_map = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++){
+            in_map.put(inorder[i], i);
+        }
+        return buildTree(preorder, inorder, preorder[0], pre_map, in_map);
+    }
+
+    public static TreeNode buildTree(int[] preorder, int[] inorder, int val,
+                              Map<Integer, Integer> pre_map,
+                              Map<Integer, Integer> in_map) {
+        TreeNode node = new TreeNode(val);
+        int idx = in_map.get(val);
+        if (idx > 0){
+            int left_idx = pre_map.get(inorder[idx - 1]);
+            node.left = buildTree(preorder, inorder, preorder[left_idx], pre_map, in_map);
+        }
+
+        if (idx < preorder.length - 1){
+            int right_idx = pre_map.get(inorder[idx + 1]);
+            node.right = buildTree(preorder, inorder, preorder[right_idx], pre_map, in_map);
+        }
+        return node;
+    }
+
 }
