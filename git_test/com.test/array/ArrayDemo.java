@@ -242,4 +242,16 @@ public class ArrayDemo {
         return ret;
     }
 
+    //
+    public int solution(int[][] m) {
+        return solution(m, 0, 0);
+    }
+
+    public int solution(int[][] m, int i, int j) {
+        if (i >= m.length || j >= m[i].length){
+            return 0;
+        }
+        return m[i][j] + Math.min(solution(m, i + 1, j), solution(m, i, j + 1));
+    }
+
 }
