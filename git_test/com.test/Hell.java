@@ -4,5 +4,6 @@ public class Hell{
 
 
         System.out.println("hahahaha");
+        System.out.println("hahahaha");
     }
 }
