@@ -7,7 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ThreadDemo {
 
     public static void main(String[] args) {
-
+        ThreadLocal threadLocal = new ThreadLocal();
+        threadLocal.get();
         printABC();
     }
 
@@ -17,6 +18,7 @@ public class ThreadDemo {
         Condition condition_1 = lock.newCondition();
         Condition condition_2 = lock.newCondition();
         Condition condition_3 = lock.newCondition();
+
 
         new Thread(() -> {
             try {

@@ -9,7 +9,18 @@ public class XiaoHongShu {
 
     public static void main(String[] args) {
 
-        System.out.println(solve(23, 12));
+        // System.out.println(mergeTwoLists(new ListNode(2), new ListNode(3)));
+        System.out.println(returnInt());
+    }
+
+    private static int returnInt(){
+        try {
+            return 1 / 0;
+        } catch (Exception e){
+            return 2;
+        } finally {
+            return 3;
+        }
     }
 
     // NC16
@@ -97,7 +108,25 @@ public class XiaoHongShu {
 
 
     // NC 33 合并两个有序链表
-    public ListNode mergeTwoLists (ListNode l1, ListNode l2) {
+    public static ListNode mergeTwoLists (ListNode l1, ListNode l2) {
+
+        ListNode ans = new ListNode(0);
+        ListNode cur = ans;
+        while(l1 != null && l2 != null){
+            if (l1.val > l2.val){
+                cur.next = l2;
+                l2 = l2.next;
+            } else {
+                cur.next = l1;
+                l1 = l1.next;
+            }
+            cur = cur.next;
+        }
+        cur.next = (l1 == null) ? l2 : l1;
+        return ans.next;
+    }
+
+    public ListNode mergeTwoLists2 (ListNode l1, ListNode l2) {
         // write code here
         if (null == l1 && null == l2){
             return null;
@@ -112,10 +141,10 @@ public class XiaoHongShu {
         ListNode node;
         if (l1.val > l2.val){
             node = l2;
-            node.next = mergeTwoLists(l1, l2.next);
+            node.next = mergeTwoLists2(l1, l2.next);
         } else {
             node = l1;
-            node.next = mergeTwoLists(l1.next, l2);
+            node.next = mergeTwoLists2(l1.next, l2);
         }
         return node;
     }
