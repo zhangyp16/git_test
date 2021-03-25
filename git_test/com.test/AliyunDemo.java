@@ -1,5 +1,6 @@
 import tree.TreeNode;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,43 @@ public class AliyunDemo {
         // System.out.println(maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
         // System.out.println(solution(new int[][]{{4,1,5,3}, {3,2, 7,7 },{6,5, 2,8},{8,9,4,5}}));
 
-        System.out.println(muliArr(5, 2, new int[]{1,1,2,2,4}));
+        // System.out.println(muliArr(5, 2, new int[]{1,1,2,2,4}));
+
+        System.out.println(mySqrt2(2147395599));
+    }
+
+    // leetcode 69 x 的平方根
+    public static int mySqrt(int x) {
+        int start = 0, end = x, ans = 0;
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if ((long)mid * mid > x){
+                end = mid - 1;
+            } else {
+                ans = mid;
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    public static double mySqrt2(int x) {
+        int precision = 2;
+        double lower = 0;
+        double high = x;
+        double mid;
+        double threshold = Math.pow(10, -precision);
+        do {
+            mid = lower + (high - lower) / 2;
+            if (mid * mid > x) {
+                high = mid;
+            } else {
+                lower = mid;
+            }
+
+        } while (Math.abs(mid * mid - x) > threshold);
+
+        return new BigDecimal(mid).setScale(precision, BigDecimal.ROUND_DOWN).doubleValue();
     }
 
     public static int solution(int[][] m) {
